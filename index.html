@@ -3,173 +3,205 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#071326">
-<title>DBFZ Browser</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080b19">
+<title>DBFZ Browser Edition</title>
 <link rel="manifest" href="manifest.webmanifest">
+
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;background:#050b16;color:white;
- font-family:Arial,sans-serif;
+ margin:0;background:#080b19;color:white;
+ font-family:Arial,sans-serif;overflow-x:hidden;
+}
+body:before{
+ content:"";position:fixed;inset:-50%;
+ background:
+ radial-gradient(ellipse at 30% 45%,#174e91 0,transparent 35%),
+ radial-gradient(ellipse at 75% 55%,#8b261e 0,transparent 35%),
+ radial-gradient(ellipse at 50% 10%,#39226c 0,transparent 45%);
+ animation:energy 9s infinite alternate;
+ z-index:-1;
+}
+@keyframes energy{
+ from{transform:translate(-3%,-2%) scale(1)}
+ to{transform:translate(3%,2%) scale(1.15)}
 }
 header{
- padding:20px;display:flex;
- justify-content:space-between;align-items:center;
- background:#091a30;border-bottom:2px solid #168cff;
+ display:flex;justify-content:space-between;
+ padding:22px;align-items:center;
+ background:#050a16dd;border-bottom:2px solid #318fff;
 }
-.logo{font-size:25px;font-weight:900;color:#39aaff}
-main{max-width:1000px;margin:auto;padding:22px}
+.logo{font-weight:1000;font-size:24px;color:#53baff}
+.status{color:#72c9ff;font-size:12px}
+main{max-width:1050px;margin:auto;padding:25px}
 .hero{
- min-height:300px;border-radius:15px;
- background:linear-gradient(90deg,#071326,#123b69,#071326);
- display:flex;flex-direction:column;
- justify-content:center;padding:30px;
- border:1px solid #2676ba;
+ min-height:310px;border:1px solid #328cff;
+ border-radius:15px;padding:35px;
+ display:flex;flex-direction:column;justify-content:center;
+ background:linear-gradient(110deg,#07172be8,#102f55a8,#2b1029a8);
+ box-shadow:0 0 35px #1677d544;
 }
-.hero h1{font-size:clamp(30px,6vw,55px);margin:8px 0}
-.subtitle{color:#a8c9e9}
-.tag{color:#41b5ff;font-weight:bold;letter-spacing:3px}
+.tag{color:#69caff;letter-spacing:5px;font-size:13px}
+h1{font-size:clamp(38px,8vw,75px);margin:15px 0;
+ text-shadow:0 0 22px #168cff}
+.subtitle{color:#b9d5f2}
 .panel{
- background:#101f34;border:1px solid #263e5c;
- border-radius:12px;padding:20px;margin-top:20px;
+ margin-top:22px;background:#0d1a2bdd;
+ border:1px solid #284b70;border-radius:13px;padding:22px;
 }
-h2{color:#55baff}
+h2{color:#65bdff}
 button{
- border:0;border-radius:8px;padding:14px 18px;
- background:#168cff;color:white;font-weight:bold;
- font-size:15px;cursor:pointer;
+ background:linear-gradient(110deg,#0875e5,#1643a5);
+ border:1px solid #62bdff;border-radius:7px;
+ padding:14px 22px;color:white;font-weight:bold;
+ cursor:pointer;font-size:14px;
 }
 button:hover,button:focus{
- outline:3px solid white;background:#0866c0;
+ background:#1b9bff;outline:3px solid white;
+ box-shadow:0 0 20px #168cff;
 }
-.buttons{display:flex;flex-wrap:wrap;gap:12px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap}
 .service{
- background:#142b47;padding:16px;
+ background:#142b49;padding:18px;
  border-radius:10px;margin:12px 0;
+ border-left:3px solid #319bff;
 }
-.service p{color:#b7cbe0}
-.small{font-size:12px;color:#8ca9c9}
-kbd{
- background:#233c5d;padding:5px 9px;
- border-radius:5px;color:white;
+.service p{color:#b8cee8}
+.small{font-size:12px;color:#8caaca}
+.menu-grid{
+ display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
 }
-footer{text-align:center;padding:25px;color:#7892ae}
-a{color:#59baff}
+.menu-grid button{width:100%;padding:18px}
+@media(max-width:550px){
+ .menu-grid{grid-template-columns:1fr}
+ header{padding:15px}
+}
+footer{text-align:center;padding:25px;color:#7897b8}
 </style>
 </head>
-<body>
 
+<body>
 <header>
- <div class="logo">DBFZ BROWSER</div>
- <div>ONLINE LAUNCHER</div>
+ <div class="logo">DBFZ</div>
+ <div class="status">BROWSER EDITION • ONLINE</div>
 </header>
 
 <main>
- <section class="hero">
-  <div class="tag">BROWSER EDITION</div>
-  <h1>DRAGON BALL<br>FIGHTERZ</h1>
-  <p class="subtitle">
-   Your Chromebook fighting game launcher.
-  </p>
-  <div class="buttons">
-   <button onclick="document.getElementById('services').scrollIntoView()">
-    QUICK PLAY
-   </button>
-   <button onclick="toggleFullscreen()">
-    FULLSCREEN
-   </button>
-  </div>
- </section>
+<section class="hero">
+ <div class="tag">BANDAI STYLE FIGHTING EXPERIENCE</div>
+ <h1>DRAGON BALL<br>FIGHTERZ</h1>
+ <p class="subtitle">ENTER THE FIGHT.</p>
+ <div class="buttons">
+  <button onclick="show('play')">QUICK PLAY</button>
+  <button onclick="fullscreen()">FULLSCREEN</button>
+ </div>
+</section>
 
- <section class="panel" id="services">
-  <h2>GAME STREAMING</h2>
-  <p>Choose a service that supports Dragon Ball FighterZ.</p>
+<section class="panel">
+ <h2>MAIN MENU</h2>
+ <div class="menu-grid">
+  <button onclick="show('play')">PLAY</button>
+  <button onclick="show('characters')">CHARACTERS</button>
+  <button onclick="show('settings')">SETTINGS</button>
+  <button onclick="show('about')">ABOUT</button>
+ </div>
+</section>
 
-  <div class="service">
-   <h3>BOOSTEROID</h3>
-   <p>Supports the Steam version according to current listings.</p>
-   <button onclick="openService('https://boosteroid.com/')">
-    OPEN BOOSTEROID
-   </button>
-  </div>
+<section class="panel" id="content">
+ <h2>WELCOME FIGHTER</h2>
+ <p>Choose PLAY to access game streaming options.</p>
+</section>
 
-  <div class="service">
-   <h3>SHADOW PC</h3>
-   <p>Cloud computer service. Your own game is required.</p>
-   <button onclick="openService('https://shadow.tech/')">
-    OPEN SHADOW
-   </button>
-  </div>
-
-  <div class="service">
-   <h3>GAME INFORMATION</h3>
-   <p>Official Dragon Ball FighterZ Steam page.</p>
-   <button onclick="openService('https://store.steampowered.com/app/678950/')">
-    VIEW GAME
-   </button>
-  </div>
- </section>
-
- <section class="panel">
-  <h2>KEYBOARD CONTROLS</h2>
-  <p><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> Navigate launcher</p>
-  <p><kbd>ENTER</kbd> Select</p>
-  <p><kbd>ESC</kbd> Exit fullscreen</p>
-  <p class="small">
-   Actual fighting controls are handled by the streaming
-   service and your game's keyboard configuration.
-  </p>
- </section>
-
- <section class="panel">
-  <h2>APP SETTINGS</h2>
-  <div class="buttons">
-   <button onclick="toggleFullscreen()">TOGGLE FULLSCREEN</button>
-   <button onclick="installInfo()">INSTALL APP INFO</button>
-  </div>
-  <p id="status" class="small">Launcher ready.</p>
- </section>
+<section class="panel">
+ <h2>KEYBOARD CONTROLS</h2>
+ <p>Navigate: <b>Arrow keys</b></p>
+ <p>Select: <b>ENTER</b></p>
+ <p>Fullscreen: <b>F</b></p>
+ <p>Back: <b>ESC</b></p>
+</section>
 </main>
 
-<footer>
- DBFZ BROWSER EDITION • CHROME OS
- <br>Cloud streaming requires an internet connection.
-</footer>
+<footer>DBFZ BROWSER EDITION</footer>
 
 <script>
-function openService(url){
- window.open(url,'_blank','noopener,noreferrer');
-}
-function toggleFullscreen(){
- if(!document.fullscreenElement){
-  document.documentElement.requestFullscreen?.();
- }else{
-  document.exitFullscreen?.();
+const content=document.getElementById("content");
+
+function show(page){
+ if(page==="play"){
+ content.innerHTML=`
+ <h2>QUICK PLAY</h2>
+ <p>Choose a cloud gaming service to access your game.</p>
+ <div class="service">
+ <h3>BOOSTEROID</h3>
+ <p>Check DBFZ compatibility and availability.</p>
+ <button onclick="openLink('https://boosteroid.com/')">OPEN SERVICE</button>
+ </div>
+ <div class="service">
+ <h3>SHADOW PC</h3>
+ <p>Cloud Windows computer. Requires your own game.</p>
+ <button onclick="openLink('https://shadow.tech/')">OPEN SERVICE</button>
+ </div>`;
  }
+ else if(page==="characters"){
+ content.innerHTML=`
+ <h2>CHARACTER ROSTER</h2>
+ <p>FIGHTERZ ROSTER PREVIEW</p>
+ <div class="menu-grid">
+ ${["GOKU","VEGETA","GOHAN","PICCOLO",
+ "TRUNKS","FRIEZA","CELL","BROLY"].map(x=>
+ `<button onclick="character('${x}')">${x}</button>`).join("")}
+ </div>
+ <p id="selected">Select a fighter.</p>`;
+ }
+ else if(page==="settings"){
+ content.innerHTML=`
+ <h2>SETTINGS</h2>
+ <p>Display: Browser fullscreen</p>
+ <button onclick="fullscreen()">TOGGLE FULLSCREEN</button>
+ <p>Keyboard: Arrow keys, Enter, F and Escape.</p>`;
+ }
+ else{
+ content.innerHTML=`
+ <h2>ABOUT DBFZ BROWSER</h2>
+ <p>A Chromebook-friendly launcher for Dragon Ball FighterZ.</p>
+ <p>This launcher does not contain the original game.</p>`;
+ }
+ content.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
-function installInfo(){
- document.getElementById('status').textContent=
- 'Use Chrome menu → Cast, save and share → Install page as app (if available).';
+function character(name){
+ document.getElementById("selected").textContent=
+ "Selected fighter: "+name;
+}
+function openLink(url){
+ window.open(url,"_blank","noopener,noreferrer");
+}
+function fullscreen(){
+ if(!document.fullscreenElement)
+ document.documentElement.requestFullscreen?.();
+ else document.exitFullscreen?.();
 }
 
-// Keyboard navigation
-document.addEventListener('keydown',e=>{
- if(['ArrowDown','ArrowRight','ArrowUp','ArrowLeft'].includes(e.key)){
-  const items=[...document.querySelectorAll('button')];
-  const current=items.indexOf(document.activeElement);
-  if(current<0)return;
-  e.preventDefault();
-  const direction=(e.key==='ArrowDown'||e.key==='ArrowRight')?1:-1;
-  items[(current+direction+items.length)%items.length].focus();
+document.addEventListener("keydown",e=>{
+ if(e.key.toLowerCase()==="f")fullscreen();
+ if(e.key==="Escape" && document.fullscreenElement)
+ document.exitFullscreen();
+ const buttons=[...document.querySelectorAll("button")];
+ const index=buttons.indexOf(document.activeElement);
+ if(index<0)return;
+ if(["ArrowDown","ArrowRight","ArrowUp","ArrowLeft"].includes(e.key)){
+ e.preventDefault();
+ const direction=["ArrowDown","ArrowRight"].includes(e.key)?1:-1;
+ buttons[(index+direction+buttons.length)%buttons.length].focus();
+ }
+ if(e.key==="Enter" && document.activeElement.tagName==="BUTTON"){
+ document.activeElement.click();
  }
 });
 
-// Register offline launcher service worker
-if('serviceWorker' in navigator){
- window.addEventListener('load',()=>{
-  navigator.serviceWorker.register('./sw.js')
-  .catch(()=>console.log('Offline mode unavailable'));
+if("serviceWorker" in navigator){
+ window.addEventListener("load",()=>{
+ navigator.serviceWorker.register("./sw.js").catch(()=>{});
  });
 }
 </script>
