@@ -1,0 +1,12 @@
+
+{
+  "name": "DBFZ Browser Edition",
+  "short_name": "DBFZ",
+  "description": "Dragon Ball FighterZ cloud gaming launcher",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#050b16",
+  "theme_color": "#071326",
+  "orientation": "landscape"
+}
